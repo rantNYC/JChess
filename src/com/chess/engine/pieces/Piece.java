@@ -1,6 +1,6 @@
 package com.chess.engine.pieces;
 
-import java.util.List;
+import java.util.Collection;
 
 import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
@@ -16,6 +16,10 @@ public abstract class Piece {
 		this.pieceAlliance = pieceAlliance;
 	}
 	
-	public abstract List<Move> calculateLegalMoves(final Board board);
+	public Alliance getPieceAlliance() {
+		return pieceAlliance;
+	}
+	
+	public abstract Collection<Move> calculateLegalMoves(final Board board);
 	
 }

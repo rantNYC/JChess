@@ -13,12 +13,13 @@ import com.chess.engine.board.Move.AttackMove;
 import com.chess.engine.board.Move.MajorMove;
 import com.google.common.collect.ImmutableList;
 
-public class Bishop extends Piece{
+public class Queen extends Piece{
 
-	private final static int[] CANDIDATE_MOVE_COORDINATE = {-9, -7, 7, 9};
+	private final static int[] CANDIDATE_MOVE_COORDINATE = {-9, -8, -7, -1, 1, 7, 8, 9};
 	
-	public Bishop(Alliance pieceAlliance, int piecePosition) {
+	public Queen(Alliance pieceAlliance, int piecePosition) {
 		super(piecePosition, pieceAlliance);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -52,14 +53,14 @@ public class Bishop extends Piece{
 
 	@Override
 	public String toString() {
-		return PieceType.BISHOP.toString();
+		return PieceType.QUEEN.toString();
 	}
 	
 	private static boolean isFirstColumExclusion(int currentPosition, int candidateOffset) {
-		return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -9  || candidateOffset == 7);
+		return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -1 || candidateOffset == -9  || candidateOffset == 7);
 	}
 	
 	private static boolean isEightColumExclusion(int currentPosition, int candidateOffset) {
-		return BoardUtils.EIGHT_COLUMN[currentPosition] && (candidateOffset == -7  || candidateOffset == 9);
+		return BoardUtils.EIGHT_COLUMN[currentPosition] && (candidateOffset == 1 || candidateOffset == -7  || candidateOffset == 9);
 	}
 }

@@ -15,9 +15,9 @@ import com.google.common.collect.ImmutableList;
 
 public class Rook extends Piece{
 
-	private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATE = {-8, -1, 1, 8};
+	private final static int[] CANDIDATE_MOVE_COORDINATE = {-8, -1, 1, 8};
 	
-	Rook(int piecePosition, Alliance pieceAlliance) {
+	public Rook(Alliance pieceAlliance, int piecePosition) {
 		super(piecePosition, pieceAlliance);
 	}
 
@@ -25,15 +25,14 @@ public class Rook extends Piece{
 	public Collection<Move> calculateLegalMoves(Board board) {
 		final List<Move> legalMoves = new ArrayList<Move>();
 		
-		for(final int candidateCoordinateOffset: CANDIDATE_MOVE_VECTOR_COORDINATE) {
-			int candidateDestinationCoordinate = this.piecePosition; 
+		for(final int candidateCoordinateOffset: CANDIDATE_MOVE_COORDINATE) {
+			int candidateDestinationCoordinate = this.piecePosition + candidateCoordinateOffset; 
 			while(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
 				
 				if(isFirstColumExclusion(candidateDestinationCoordinate, candidateCoordinateOffset) ||
 						isEightColumExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)) {
 					break;
-				}
-				candidateDestinationCoordinate += candidateCoordinateOffset;			
+				}		
 				final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
 				if(!candidateDestinationTile.isTileOccupied()) {
 					legalMoves.add(new MajorMove(board, this, candidateDestinationCoordinate));
@@ -51,6 +50,10 @@ public class Rook extends Piece{
 		return ImmutableList.copyOf(legalMoves);
 	}
 
+	@Override
+	public String toString() {
+		return PieceType.ROOK.toString();
+	}
 	
 	private static boolean isFirstColumExclusion(int currentPosition, int candidateOffset) {
 		return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -1);

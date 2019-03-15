@@ -71,7 +71,6 @@ public abstract class Piece {
 	public abstract Piece movePiece(final Move move);
 
 	public int getPiecePosition() {
-		// TODO Auto-generated method stub
 		return this.piecePosition;
 	}
 	
@@ -82,10 +81,20 @@ public abstract class Piece {
 			public boolean isKing() {
 				return false;
 			}
+
+			@Override
+			public boolean isRook() {
+				return false;
+			}
 		},
 		KNIGHT("N") {
 			@Override
 			public boolean isKing() {
+				return false;
+			}
+
+			@Override
+			public boolean isRook() {
 				return false;
 			}
 		},
@@ -94,11 +103,21 @@ public abstract class Piece {
 			public boolean isKing() {
 				return false;
 			}
+
+			@Override
+			public boolean isRook() {
+				return false;
+			}
 		},
 		ROOK("R") {
 			@Override
 			public boolean isKing() {
 				return false;
+			}
+
+			@Override
+			public boolean isRook() {
+				return true;
 			}
 		},
 		QUEEN("Q") {
@@ -106,11 +125,21 @@ public abstract class Piece {
 			public boolean isKing() {
 				return false;
 			}
+
+			@Override
+			public boolean isRook() {
+				return false;
+			}
 		},
 		KING("K") {
 			@Override
 			public boolean isKing() {
 				return true;
+			}
+
+			@Override
+			public boolean isRook() {
+				return false;
 			}
 		};
 		
@@ -126,6 +155,6 @@ public abstract class Piece {
 		}
 
 		public abstract boolean isKing();
-		
+		public abstract boolean isRook();	
 	}
 }

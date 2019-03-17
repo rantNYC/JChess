@@ -17,7 +17,6 @@ public class Pawn extends Piece{
 	
 	public Pawn(Alliance pieceAlliance, int piecePosition) {
 		super(PieceType.PAWN, piecePosition, pieceAlliance);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -33,8 +32,8 @@ public class Pawn extends Piece{
 				//TODO: More work to do when Upgrade
 				legalMoves.add(new MajorMove(board, this, candidateDestinationCoordinate));
 			}else if(currentCandidateOffset == BoardUtils.NUM_TILES_PER_ROW * 2 && this.isFirstMove() && 
-					(BoardUtils.SECOND_ROW[this.piecePosition] && this.getPieceAlliance().isBlack()) || 
-					(BoardUtils.SEVENTH_ROW[this.piecePosition] && this.getPieceAlliance().isWhite())) {
+					((BoardUtils.SEVENTH_RANK[this.piecePosition] && this.getPieceAlliance().isBlack()) || 
+					(BoardUtils.SECOND_RANK[this.piecePosition] && this.getPieceAlliance().isWhite()))) {
 				final int behindCandidateCoordinate = this.piecePosition + this.pieceAlliance.getDirection() * BoardUtils.NUM_TILES_PER_ROW;
 				if(!board.getTile(behindCandidateCoordinate).isTileOccupied() && 
 				   !board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
@@ -67,8 +66,8 @@ public class Pawn extends Piece{
 	}
 
 	@Override
-	public Rook movePiece(Move move) {
-		return new Rook(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate());
+	public Pawn movePiece(Move move) {
+		return new Pawn(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate());
 	}
 	
 	@Override

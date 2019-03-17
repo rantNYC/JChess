@@ -76,7 +76,7 @@ public abstract class Move {
 			}
 		}
 		
-		for(final Piece piece: this.board.currentPlayer().getActivePieces()) {
+		for(final Piece piece: this.board.currentPlayer().getOpponent().getActivePieces()) {
 			builder.setPiece(piece);
 		}
 		
@@ -91,7 +91,30 @@ public abstract class Move {
 		
 		public MajorMove(final Board board,final Piece movedPiece,final int destinationCoordinate){
 			super(board, movedPiece, destinationCoordinate);
-		}		
+		}	
+		
+		@Override
+		public int hashCode() {
+			return this.hashCode() + super.hashCode();
+		}
+		
+		@Override
+		public boolean equals(final Object other) {
+			if(this == other) {
+				return true;
+			}
+			if(!(other instanceof Move)) {
+				return false;
+			}
+			
+			final MajorMove otherAttackMove = (MajorMove) other;
+			return super.equals(otherAttackMove);
+		}
+		
+		@Override
+		public boolean isAttack() {
+			return false;
+		}
 	}
 	
 	public static class AttackMove extends Move{

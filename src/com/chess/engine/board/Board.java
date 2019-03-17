@@ -62,7 +62,7 @@ public class Board {
 		return this.blackPlayer;
 	}
 
-	private Collection<Move> calculateLegalMoves(Collection<Piece> pieces) {
+	private Collection<Move> calculateLegalMoves(final Collection<Piece> pieces) {
 		final List<Move> legalMoves = new ArrayList<>();
 		for(final Piece piece : pieces) {
 			legalMoves.addAll(piece.calculateLegalMoves(this));
@@ -70,8 +70,8 @@ public class Board {
 		return ImmutableList.copyOf(legalMoves);	
 	}
 
-	private Collection<Piece> calculateActivePiece(List<Tile> gameBoard,
-												   Alliance alliance) {
+	private Collection<Piece> calculateActivePiece(final List<Tile> gameBoard,
+												   final Alliance alliance) {
 		final List<Piece> activePieces = new ArrayList<>();
 		for(final Tile tile: gameBoard) {
 			if(tile.isTileOccupied()) {

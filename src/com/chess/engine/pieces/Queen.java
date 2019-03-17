@@ -27,24 +27,28 @@ public class Queen extends Piece{
 		final List<Move> legalMoves = new ArrayList<Move>();
 		
 		for(final int candidateCoordinateOffset: CANDIDATE_MOVE_COORDINATE) {
-			int candidateDestinationCoordinate = this.piecePosition + candidateCoordinateOffset; 
+			int candidateDestinationCoordinate = this.piecePosition; 
 			while(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
 				
 				if(isFirstColumExclusion(candidateDestinationCoordinate, candidateCoordinateOffset) ||
 						isEightColumExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)) {
 					break;
 				}
-				final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
-				if(!candidateDestinationTile.isTileOccupied()) {
-					legalMoves.add(new MajorMove(board, this, candidateDestinationCoordinate));
-				} else {
-					final Piece pieceAtDestination = candidateDestinationTile.getPiece();
-					final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
-					
-					if(this.getPieceAlliance() != pieceAlliance) {
-						legalMoves.add(new AttackMove(board,this, candidateDestinationCoordinate, pieceAtDestination));
+				
+				candidateDestinationCoordinate += candidateCoordinateOffset; 
+				if(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
+					final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
+					if(!candidateDestinationTile.isTileOccupied()) {
+						legalMoves.add(new MajorMove(board, this, candidateDestinationCoordinate));
+					} else {
+						final Piece pieceAtDestination = candidateDestinationTile.getPiece();
+						final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
+						
+						if(this.getPieceAlliance() != pieceAlliance) {
+							legalMoves.add(new AttackMove(board,this, candidateDestinationCoordinate, pieceAtDestination));
+						}
+						break;
 					}
-					break;
 				}
 			}
 		}
@@ -52,7 +56,7 @@ public class Queen extends Piece{
 	}
 
 	@Override
-	public Queen movePiece(Move move) {
+	public Queen movePiece(final Move move) {
 		return new Queen(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate());
 	}
 	

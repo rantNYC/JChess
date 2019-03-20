@@ -1,5 +1,7 @@
 package com.chess.engine.board;
 
+import java.util.Map;
+
 public class BoardUtils {
 	
 	public static final boolean[] FIRST_COLUMN = initColumn(0);
@@ -16,14 +18,27 @@ public class BoardUtils {
 	public static final boolean[] SECOND_RANK = initRow(48);
 	public static final boolean[] FIRST_RANK = initRow(56);
 	
+	
+	private static final String[] ALGEBREIC_NOTATION = initializeAlgebreicNotation();
+	private static final Map<String, Integer> POSITION_TO_COORDINATE  = initializePositionToCoordinateMap();
+	
 	public static final int NUM_TILES = 64;
 	public static final int NUM_TILES_PER_ROW = 8;
-
 	
 	private BoardUtils() {
 		throw new RuntimeException("Cannot instantiate Utils Class");
 	}
 	
+	private static Map<String, Integer> initializePositionToCoordinateMap() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private static String[] initializeAlgebreicNotation() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	private static boolean[] initRow(int rowNumber) {
 		final boolean[] row = new boolean[NUM_TILES];
 		do {
@@ -45,5 +60,13 @@ public class BoardUtils {
 
 	public static boolean isValidTileCoordinate(final int coordinate) {		
 		return coordinate >= 0 && coordinate < NUM_TILES;
+	}
+
+	public static int getCoordinateAtPosition(final String destinationCoordinate) {
+		return POSITION_TO_COORDINATE.get(destinationCoordinate);
+	}
+	
+	public static String getPositionAtCoordinate(final int destinationCoordinate) {
+		return ALGEBREIC_NOTATION[destinationCoordinate];
 	}
 }

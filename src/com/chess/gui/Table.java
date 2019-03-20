@@ -41,8 +41,11 @@ import com.google.common.collect.Lists;
 public class Table {
 
 	private final JFrame gameFrame;
+	private final GameHistoryPanel gameHistoryPanel;
+	private final TakenPiecesPanel takenPiecesPanel;
 	private final BoardPanel boardPanel;
 	private Board chessBoard;
+	private final MoveLog moveLog;
 	
 	private Tile sourceTile;
 	private Tile destinationTile;
@@ -66,11 +69,17 @@ public class Table {
 		this.gameFrame.setJMenuBar(tableMenuBar);
 		this.gameFrame.setSize(OUTER_FRAME_DIMENSION);
 		this.chessBoard = Board.createStandardBoard();
+		this.gameHistoryPanel = new GameHistoryPanel();
+		this.takenPiecesPanel = new TakenPiecesPanel();
 		this.highlightLegalMoves = false;
 		this.boardPanel = new BoardPanel();
+		this.moveLog = new MoveLog();
 		this.boardDirection = BoardDirection.NORMAL;
+		this.gameFrame.add(this.takenPiecesPanel, BorderLayout.WEST);
 		this.gameFrame.add(boardPanel, BorderLayout.CENTER);
-		
+		this.gameFrame.add(this.gameHistoryPanel, BorderLayout.EAST);
+		this.gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.gameFrame.setLocationRelativeTo(null);
 		this.gameFrame.setVisible(true);
 	}
 
@@ -199,6 +208,38 @@ public class Table {
 		}
 	}
 	
+	public static class MoveLog{
+		private final List<Move> moves;
+		
+		MoveLog(){
+			this.moves = new ArrayList<Move>();
+		}
+		
+		public List<Move> getMoves(){
+			return this.moves;
+		}
+		
+		public void addMove(final Move move) {
+			moves.add(move);
+		}
+		
+		public int size() {
+			return this.moves.size();
+		}
+		
+		public void clear() {
+			this.moves.clear();
+		}
+		
+		public Move removeMove(final int index) {
+			return this.moves.remove(index);
+		}
+		
+		public boolean removeMove(final Move move) {
+			return this.moves.remove(move);
+		}
+	}
+
 	private class TilePanel extends JPanel{
 		
 		/**
@@ -240,7 +281,7 @@ public class Table {
 							final MoveTransition transition = chessBoard.currentPlayer().makeMove(move);
 							if(transition.getMoveStatus().isDone()) {
 								chessBoard = transition.getTransitionBoard();
-								//TODO: Add the move that was made to the log
+								moveLog.addMove(move);
 							}
 							sourceTile = null;
 							destinationTile = null;
@@ -250,6 +291,8 @@ public class Table {
 							
 							@Override
 							public void run() {
+								gameHistoryPanel.redo(chessBoard, moveLog);
+								takenPiecesPanel.redo(moveLog);
 								boardPanel.drawBoard(chessBoard);
 							}
 						});

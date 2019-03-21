@@ -114,7 +114,7 @@ public abstract class Move {
 			if(this == other) {
 				return true;
 			}
-			if(!(other instanceof Move)) {
+			if(!(other instanceof MajorMove)) {
 				return false;
 			}
 			
@@ -219,6 +219,11 @@ public abstract class Move {
 			builder.setMoveMaker(this.board.currentPlayer().getOpponent().getAlliance());
 			
 			return builder.build();
+		}
+		
+		@Override
+		public String toString() {
+			return BoardUtils.getPositionAtCoordinate(this.destinationCoordinate); 
 		}
 	}
 	

@@ -76,7 +76,7 @@ public class Table {
 		this.moveLog = new MoveLog();
 		this.boardDirection = BoardDirection.NORMAL;
 		this.gameFrame.add(this.takenPiecesPanel, BorderLayout.WEST);
-		this.gameFrame.add(boardPanel, BorderLayout.CENTER);
+		this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
 		this.gameFrame.add(this.gameHistoryPanel, BorderLayout.EAST);
 		this.gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.gameFrame.setLocationRelativeTo(null);

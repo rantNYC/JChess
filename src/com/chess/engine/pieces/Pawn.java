@@ -60,12 +60,12 @@ public class Pawn extends Piece{
 						else {
 							legalMoves.add(new PawnAttackMove(board, this, candidateDestinationCoordinate, pieceOnCandidate));
 						}						
-					} else if(board.getEnPassant() != null){
-						if(board.getEnPassant().getPiecePosition() == (this.piecePosition + (this.pieceAlliance.getOppositeDirection()))) {
-							final Piece pieceOnPassant = board.getEnPassant();
-							if(this.pieceAlliance != pieceOnPassant.getPieceAlliance()) {
-								legalMoves.add(new PawnEnPassantAttackMove(board, this, candidateDestinationCoordinate, pieceOnPassant));
-							}
+					}
+				} else if(board.getEnPassant() != null){
+					if(board.getEnPassant().getPiecePosition() == (this.piecePosition + (this.pieceAlliance.getOppositeDirection()))) {
+						final Piece pieceOnPassant = board.getEnPassant();
+						if(this.pieceAlliance != pieceOnPassant.getPieceAlliance()) {
+							legalMoves.add(new PawnEnPassantAttackMove(board, this, candidateDestinationCoordinate, pieceOnPassant));
 						}
 					}
 				}

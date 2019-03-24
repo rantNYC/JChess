@@ -1,5 +1,6 @@
 package com.chess.engine.board;
 
+import com.chess.engine.Alliance;
 import com.chess.engine.board.Board.Builder;
 import com.chess.engine.pieces.Pawn;
 import com.chess.engine.pieces.Piece;

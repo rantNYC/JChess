@@ -32,6 +32,8 @@ public class TakenPiecesPanel extends JPanel{
 	private final Dimension TAKEN_PIECES_DIMENSION = new Dimension(40, 80);
 	private static final EtchedBorder PANEL_BORDER = new EtchedBorder(EtchedBorder.RAISED);
 
+	private static String defaultImagesPath = "art/pieces/simple/";
+	
 	public TakenPiecesPanel() {
 		super(new BorderLayout());
 		setBackground(PANEL_COLOR);
@@ -85,8 +87,8 @@ public class TakenPiecesPanel extends JPanel{
 		
 		for(final Piece takenPiece: whiteTakenPieces) {
 			try {
-				final BufferedImage image = ImageIO.read(new File("art/pieces/plain" + 
-						takenPiece.getPieceAlliance().toString().substring(0, 1) + "" + takenPiece.toString()));
+				final BufferedImage image = ImageIO.read(new File(defaultImagesPath + 
+						takenPiece.getPieceAlliance().toString().substring(0, 1) + "" + takenPiece.toString() + ".gif"));
 				final ImageIcon icon = new ImageIcon(image);
 				final JLabel imageLabel = new JLabel(icon);
 				this.southPanel.add(imageLabel);
@@ -97,8 +99,8 @@ public class TakenPiecesPanel extends JPanel{
 		
 		for(final Piece takenPiece: blackTakenPieces) {
 			try {
-				final BufferedImage image = ImageIO.read(new File("art/pieces/plain" + 
-						takenPiece.getPieceAlliance().toString().substring(0, 1) + "" + takenPiece.toString()));
+				final BufferedImage image = ImageIO.read(new File(defaultImagesPath + 
+						takenPiece.getPieceAlliance().toString().substring(0, 1) + "" + takenPiece.toString() + ".gif"));
 				final ImageIcon icon = new ImageIcon(image);
 				final JLabel imageLabel = new JLabel(icon);
 				this.southPanel.add(imageLabel);

@@ -71,7 +71,6 @@ public abstract class Player {
 		return !this.isInCheck && !hasEscapeMoves();
 	}
 	
-	//TODO: Implement these methods
 	public boolean isCastled() {
 		return false;
 	}

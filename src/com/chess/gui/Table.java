@@ -301,26 +301,18 @@ public class Table {
 				
 				@Override
 				public void mousePressed(final MouseEvent e) {
-					// TODO Auto-generated method stub
-					
 				}
 				
 				@Override
 				public void mouseExited(final MouseEvent e) {
-					// TODO Auto-generated method stub
-					
 				}
 				
 				@Override
 				public void mouseEntered(final MouseEvent e) {
-					// TODO Auto-generated method stub
-					
 				}
 				
 				@Override
 				public void mouseClicked(final MouseEvent e) {
-					// TODO Auto-generated method stub
-					
 				}
 			});
 			

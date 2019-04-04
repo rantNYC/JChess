@@ -182,7 +182,6 @@ public class Table {
 		/**
 		 * 
 		 */
-		private static final long serialVersionUID = 1L;
 		final List<TilePanel> boardTiles;
 		
 		BoardPanel(){

@@ -30,10 +30,13 @@ public class King extends Piece{
 		final List<Move> legalMoves = new ArrayList<Move>();
 		
 		for(final int currentCandidateOffset: CANDIDATE_MOVE_COORDINATE) {
-			int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
 			
 			if(isFirstColumnExclusion(this.piecePosition, currentCandidateOffset) ||
-			   isEightColumnExclusion(this.piecePosition, currentCandidateOffset))
+			   isEightColumnExclusion(this.piecePosition, currentCandidateOffset)) {
+				continue;
+			}
+			
+			int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
 			
 			if(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
 				final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);

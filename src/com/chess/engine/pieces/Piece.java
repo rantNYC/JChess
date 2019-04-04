@@ -43,10 +43,10 @@ public abstract class Piece {
 		}
 		
 		final Piece otherPiece = (Piece) other;
-		return piecePosition == otherPiece.getPiecePosition() &&
-			   pieceType == otherPiece.getPieceType() &&
-			   isFirstMove == otherPiece.isFirstMove &&
-			   pieceAlliance == otherPiece.getPieceAlliance();			
+		return this.piecePosition == otherPiece.getPiecePosition() &&
+			   this.pieceType == otherPiece.getPieceType() &&
+			   this.isFirstMove == otherPiece.isFirstMove &&
+			   this.pieceAlliance == otherPiece.getPieceAlliance();			
 	}
 	
 	@Override

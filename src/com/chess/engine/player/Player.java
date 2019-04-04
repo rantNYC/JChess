@@ -7,6 +7,7 @@ import java.util.List;
 import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.Move;
+import com.chess.engine.board.Move.NullMove;
 import com.chess.engine.pieces.King;
 import com.chess.engine.pieces.Piece;
 import com.google.common.collect.ImmutableList;
@@ -20,12 +21,11 @@ public abstract class Player {
 	private final boolean isInCheck;
 	
 	Player(final Board board,
-		   Collection<Move> legalMoves,
-		   Collection<Move> opponentMoves){
+		   final Collection<Move> playerLegals,
+		   final Collection<Move> opponentMoves){
 		this.board = board;
 		this.playerKing = establishKing();
-//		this.legalMoves = ImmutableList.copyOf(Iterables.concat(legalMoves, opponentMoves));
-		this.legalMoves = legalMoves;
+		this.legalMoves = ImmutableList.copyOf(Iterables.concat(playerLegals, calculateKingCastles(playerLegals, opponentMoves)));
 		this.isInCheck = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentMoves).isEmpty();
 	}
 

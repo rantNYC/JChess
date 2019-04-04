@@ -143,8 +143,8 @@ public class GameHistoryPanel extends JPanel{
 
 	private static class Row{
 		
-		private static String whiteMove;
-		private static String blackMove;
+		private String whiteMove;
+		private String blackMove;
 		
 		Row(){
 			

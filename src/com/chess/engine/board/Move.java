@@ -116,7 +116,7 @@ public abstract class Move {
 		
 		@Override
 		public String toString() {
-			return movedPiece.getPieceType() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+			return movedPiece.toString() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
 		}
 	}
 	
@@ -146,7 +146,7 @@ public abstract class Move {
 		
 		@Override
 		public String toString(){
-			return movedPiece.getPieceType().toString() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+			return movedPiece.toString() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
 		}
 		
 		@Override
@@ -203,12 +203,12 @@ public abstract class Move {
 	
 		@Override
 		public boolean equals(Object other) {
-			return this == other || other instanceof PawnMove || super.equals(other);
+			return this == other || other instanceof PawnMove && super.equals(other);
 		}
 		
 		@Override
 		public String toString() {
-			return BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+			return movedPiece.toString() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
 		}
 	}
 	
@@ -226,7 +226,7 @@ public abstract class Move {
 		
 		@Override
 		public String toString() {
-			return BoardUtils.getPositionAtCoordinate(this.movedPiece.getPiecePosition()).substring(0,1) + "x" +
+			return movedPiece.toString() + BoardUtils.getPositionAtCoordinate(this.movedPiece.getPiecePosition()).substring(0,1) + "x" +
 													BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
 		}
 	}
@@ -266,7 +266,7 @@ public abstract class Move {
 		
 		@Override
 		public String toString() {
-			return movedPiece.getPieceType() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
+			return movedPiece.toString() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate);
 		}
 	}
 	
@@ -355,7 +355,7 @@ public abstract class Move {
 		
 		@Override
 		public String toString() {
-			return BoardUtils.getPositionAtCoordinate(this.destinationCoordinate); 
+			return movedPiece.toString() + BoardUtils.getPositionAtCoordinate(this.destinationCoordinate); 
 		}
 	}
 	
@@ -391,7 +391,7 @@ public abstract class Move {
 				}
 			}
 			
-			for(final Piece piece: this.board.currentPlayer().getActivePieces()) {
+			for(final Piece piece: this.board.currentPlayer().getOpponent().getActivePieces()) {
 				builder.setPiece(piece);
 			}
 			
